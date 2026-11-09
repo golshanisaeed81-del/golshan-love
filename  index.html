@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>هشدار امنیتی</title>
+<style>
+body {
+  background:#100000;
+  color:white;
+  font-family:Tahoma,sans-serif;
+  text-align:center;
+  padding:30px 15px;
+}
+.box {
+  max-width:420px;
+  margin:50px auto;
+  padding:25px;
+  border:2px solid #d00000;
+  border-radius:18px;
+  background:#260000;
+}
+h1 {color:#ff3333}
+.bar {
+  height:17px;
+  background:#555;
+  border-radius:20px;
+  overflow:hidden;
+  margin:25px 0;
+}
+#progress {
+  height:100%;
+  width:0;
+  background:red;
+}
+#status {color:#ffbaba;line-height:2}
+#end {display:none;color:#fff}
+.heart {font-size:45px}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>⚠️ هشدار امنیتی</h1>
+<h2>گوشی شما در حال بررسی است...</h2>
+<p id="status">در حال بررسی وضعیت امنیتی گوشی...</p>
+<div class="bar"><div id="progress"></div></div>
+<p id="percent">۰٪</p>
+<div id="end">
+<div class="heart">❤️</div>
+<h1>گول خوردی عزیزم! 😂</h1>
+<h2>هیچ اتفاقی برای گوشیت نیفتاده.</h2>
+<p>فقط خواستم یکم بترسونمت!</p>
+<p>دوستت دارم ❤️</p>
+</div>
+</div>
+<script>
+let p=0;
+let messages=[
+"در حال بررسی وضعیت امنیتی گوشی...",
+"در حال بررسی تنظیمات...",
+"در حال تکمیل بررسی...",
+"تقریباً تمام شد..."
+];
+let timer=setInterval(()=>{
+p+=5;
+document.getElementById("progress").style.width=p+"%";
+document.getElementById("percent").innerText=p+"٪";
+document.getElementById("status").innerText=messages[Math.min(3,Math.floor(p/25))];
+if(p>=100){
+clearInterval(timer);
+document.getElementById("status").style.display="none";
+document.getElementById("progress").parentElement.style.display="none";
+document.getElementById("percent").style.display="none";
+document.getElementById("end").style.display="block";
+}
+},500);
+</script>
+</body>
+</html>
